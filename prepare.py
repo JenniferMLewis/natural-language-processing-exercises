@@ -49,8 +49,8 @@ def lemmatize(string):
     [This is good for smaller file sizes, it has a higher readibility accuracy, but does require more computation power, if you have a lot of data or limited processing power consider stem() instead.]
     '''
     wnl = nltk.stem.WordNetLemmatizer()
-    lemma_art = [wnl.lemmatize(word) for word in string.split(' ')]
-    string= ' '.join(lemma_art)
+    lemma = [wnl.lemmatize(word) for word in string.split(' ')]
+    string= ' '.join(lemma)
     return string
 
 
