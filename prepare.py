@@ -28,6 +28,11 @@ def tokenize(string):
     string = token.tokenize(string, return_str=True)
     return string
 
+def full_clean(string, extra_words= [], exclude_words= [], language ='english'):
+    string = tokenize(basic_clean(string))
+    string = remove_stopwords(string,extra_words,exclude_words,language)
+    return string
+
 
 def stem(string):
     '''
@@ -62,9 +67,9 @@ def remove_stopwords(string, extra_words = [], exclude_words= [], language = 'en
     '''
     stopwords_list = stopwords.words(language)
     if len(extra_words) > 0:
-        stopwords_list.append(extra_words)
+        stopwords_list.extend(extra_words)
     if len(exclude_words) > 0:
-        stopwords_list.remove(exclude_words)
+        set(stopwords_list) - set(exclude_words)
     words = string.split(' ')
     filtered_words = [word for word in words if word not in stopwords_list]
     string = ' '.join(filtered_words)
